@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NOTE IT - SIGN UP</title>
+
+    <script src="https://code.iconify.design/2/2.1.1/iconify.min.js"></script>
+    
+    <link rel="stylesheet" href="{{url_for('static', filename='Login-Signup-Style.css')}}">
+
+    <!-- FONTs -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- ROBOTO MONO FONT -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@200;400;600;700&display=swap" rel="stylesheet">
+    <!-- ROBOTO FONT-->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@200;400;600;700&family=Roboto:wght@100;300&display=swap" rel="stylesheet">
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="{{url_for('static', filename='favicon/apple-touch-icon.png')}}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{url_for('static', filename='favicon/favicon-32x32.png')}}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{url_for('static', filename='favicon/favicon-16x16.png')}}">
+    <link rel="manifest" href="{{url_for('static', filename='/favicon/site.webmanifest')}}">
+  </head>
+  <body>
+
+      <div class="form-container">
+
+        <form action="signup", method='POST'>
+          <a href="/"><div class="main-title horizontal-align"> NOTE IT </div></a>
+          
+          {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+              {% for category, message in messages %}
+                <div class="flash-message {{category}}">{{ message }}</div>
+              {% endfor %}
+            {% endif %}
+          {% endwith %}
+
+          <div>
+            <div class="text">USERNAME</div>
+            <input type="text" name="username" id="Username" class="input-field horizontal-align" required/>
+          </div>
+          
+          <div>
+            <div class="text">PASSWORD</div>
+            <input type="password" name="password" id="Password" class="input-field horizontal-align" required/>
+          </div>
+
+          <div>
+            <div class="text">RE-TYPE PASSWORD</div>
+            <input type="password" name="re-password" id="re-Password" class="input-field horizontal-align" required/>
+          </div>
+
+          <button id="submit-btn" class="horizontal-align" type="submit">SIGN UP</button>
+
+          <div class="new-user-link horizontal-align">
+            <a href="/login" >Already Have An Account?</a>
+          </div>
+          
+        </form>
+
+      </div>
+  </body>
+</html>

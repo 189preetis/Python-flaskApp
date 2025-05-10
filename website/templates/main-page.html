@@ -1,0 +1,58 @@
+{% extends "main-layout.html" %}
+
+{% block title %} NOTE IT {% endblock title %}
+
+{% block head %}
+    <!-- Styles -->
+    <link rel="stylesheet" href="{{url_for('static', filename='NoteStyle.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='SearchBarStyle.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='ScrollbarStyle.css')}}">
+    <!-- Scripts -->
+    <script src="{{url_for('static', filename='Copy.js')}}"></script>
+{% endblock head %}
+
+{% block body %}
+
+    <div id="serach-bar-container">
+        <form action="notes" id="search-form">
+        <div>
+            <input type="search" name="search-value" id="serach-bar">|
+            <a onclick="document.getElementById('search-form').submit()"><span class="iconify" id="search-icon" data-icon="ant-design:search-outlined" data-width="22" data-height="22"></span></a>
+        </div>
+        </form>
+    </div>
+
+    {% if search_value|length > 0 %}
+        <div id="status-title">Search Result of "{{ search_value }}"</div>
+    {% elif for_shared == True %}
+        <div id="status-title">Public Notes</div>
+    {% endif %}
+
+    <div class="notes-container">
+        {% for note in notes %}
+            <div class="note">
+                <a href="/notes/{{ note[0].note_id }}">
+                <div class="note-body">
+                    <div class="note-date">
+                        {{ note[0].update_date }}
+                    </div>
+                    <div class="note-title">
+                        <!-- 21 max characters max -->
+                        {{ note[0].title|truncate(24, True, '...', 0) }}
+                    </div>
+                    <!-- 192 characters max | without dots -->
+                    <textarea class="note-content" readonly>{{ note[0].body|truncate(195, False, '...', 0) }}</textarea>
+                </a>
+                    <div class="note-icon">
+                        {% if note[0].is_public == 1 %}
+                            <button id="public-icon-button" onclick="copyToClipboard('https://noteit.pythonanywhere.com/public/{{ note[1].slug}}')"><span class="iconify public-icon" data-icon="fluent:share-24-regular" data-width="24" data-height="23"></span></button>
+                        {% endif %}
+                        <a href="/delete/{{ note[0].note_id }}"><span class="iconify delete-icon"  data-icon="ic:baseline-delete-outline" data-width="24" data-height="23"></span></a>
+                        <a href="/edit-note/{{ note[0].note_id }}"><span class="iconify edit-icon" data-icon="eva:edit-2-outline" data-width="24" data-height="23"></span></a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+
+    </div>
+{% endblock body %}
