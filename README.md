@@ -22,7 +22,7 @@ At-last Forget 🤦‍♂️ It?
   
 </p>
 
-![Contributors](https://img.shields.io/github/contributors/NisheetNakrani/NOTE-IT-APP?color=dark-green) ![Issues](https://img.shields.io/github/issues/NisheetNakrani/NOTE-IT-APP) 
+ 
 
 ## About The Project
 
@@ -59,8 +59,5 @@ Python (Flask) | HTML | CSS | JS
 * 4. Push to the Branch (`git push origin feature/NewFeature`)
 * 5. Open a Pull Request
 
-## Authors
 
--> [**Nisheet Nakrani**](https://github.com/NisheetNakrani) - *Comp-Sci Student* - **Back-end & Front-end Development** </br>
--> [**Priyanshu Dholu**](https://github.com/Priyanshu-Dholu) - *Comp-Sci Student* - **Front-end Development**
 
