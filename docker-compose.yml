@@ -1,0 +1,11 @@
+version: "3.8"
+services:
+  web:
+   build: .
+   ports:
+     - "8080:8080"
+   volumes:
+     - ./data:/usr/src/app
+   command: python main.py    
+
+

@@ -17,18 +17,18 @@ def home():
     return render_template('index.html')
 
 def set_timezone(ip):
-    if not session.get('timezone'):
-        tz = requests.get(f'http://ip-api.com/json/{ip}').json()
+        if not session.get('timezone'):
+                    tz = requests.get(f'http://ip-api.com/json/{ip}').json()
 
-        if tz['status'] == 'fail':
-            # set Default Timezone
-            session['timezone'] = 'Asia/Kolkata'
-            return False
+                            if tz['status'] == 'fail':
+                                        # set Default Timezone
+                                                    session['timezone'] = 'Asia/Kolkata'
+                                                return False
 
-        # Set user Timezone
-        session['timezone'] = timezone(str(tz['timezone']))
+                                                                    # Set user Timezone as string (not as timezone object)
+                                 session['timezone'] = tz['timezone']
+                                        return True
 
-        return True
 
 @views.route('/notes')
 def notes():
